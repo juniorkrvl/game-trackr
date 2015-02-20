@@ -28,15 +28,19 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmMenu));
             this.mnMenu = new System.Windows.Forms.ToolStrip();
-            this.btnAddBiblioteca = new System.Windows.Forms.ToolStripButton();
             this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
-            this.btnPsp = new System.Windows.Forms.ToolStripButton();
-            this.btnGba = new System.Windows.Forms.ToolStripButton();
             this.flContainer = new System.Windows.Forms.FlowLayoutPanel();
             this.toolStrip1 = new System.Windows.Forms.ToolStrip();
-            this.btnAddManual = new System.Windows.Forms.ToolStripButton();
-            this.btnAtualizar = new System.Windows.Forms.ToolStripButton();
+            this.btnConfig = new System.Windows.Forms.ToolStripButton();
+            this.btnRefresh = new System.Windows.Forms.ToolStripButton();
+            this.btnPsp = new System.Windows.Forms.ToolStripButton();
+            this.btnPSOne = new System.Windows.Forms.ToolStripButton();
+            this.btnGba = new System.Windows.Forms.ToolStripButton();
+            this.pbProgresso = new System.Windows.Forms.ToolStripProgressBar();
+            this.lblProcessando = new System.Windows.Forms.ToolStripLabel();
+            this.bgWorker = new System.ComponentModel.BackgroundWorker();
             this.mnMenu.SuspendLayout();
             this.toolStrip1.SuspendLayout();
             this.SuspendLayout();
@@ -46,9 +50,11 @@
             this.mnMenu.BackColor = System.Drawing.Color.DimGray;
             this.mnMenu.GripStyle = System.Windows.Forms.ToolStripGripStyle.Hidden;
             this.mnMenu.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.btnAddBiblioteca,
+            this.btnConfig,
+            this.btnRefresh,
             this.toolStripSeparator1,
             this.btnPsp,
+            this.btnPSOne,
             this.btnGba});
             this.mnMenu.Location = new System.Drawing.Point(0, 0);
             this.mnMenu.Name = "mnMenu";
@@ -57,51 +63,12 @@
             this.mnMenu.TabIndex = 0;
             this.mnMenu.Text = "toolStrip1";
             // 
-            // btnAddBiblioteca
-            // 
-            this.btnAddBiblioteca.Alignment = System.Windows.Forms.ToolStripItemAlignment.Right;
-            this.btnAddBiblioteca.ForeColor = System.Drawing.Color.White;
-            this.btnAddBiblioteca.Image = global::GameTrackr.Properties.Resources.book_add;
-            this.btnAddBiblioteca.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
-            this.btnAddBiblioteca.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.btnAddBiblioteca.Name = "btnAddBiblioteca";
-            this.btnAddBiblioteca.Size = new System.Drawing.Size(94, 51);
-            this.btnAddBiblioteca.Text = "Nova Biblioteca";
-            this.btnAddBiblioteca.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
-            this.btnAddBiblioteca.Click += new System.EventHandler(this.btnAddBiblioteca_Click);
-            // 
             // toolStripSeparator1
             // 
             this.toolStripSeparator1.Alignment = System.Windows.Forms.ToolStripItemAlignment.Right;
             this.toolStripSeparator1.ForeColor = System.Drawing.Color.White;
             this.toolStripSeparator1.Name = "toolStripSeparator1";
             this.toolStripSeparator1.Size = new System.Drawing.Size(6, 54);
-            // 
-            // btnPsp
-            // 
-            this.btnPsp.Checked = true;
-            this.btnPsp.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.btnPsp.ForeColor = System.Drawing.Color.White;
-            this.btnPsp.Image = global::GameTrackr.Properties.Resources.sony_psp_icon;
-            this.btnPsp.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
-            this.btnPsp.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.btnPsp.Name = "btnPsp";
-            this.btnPsp.Size = new System.Drawing.Size(116, 51);
-            this.btnPsp.Text = "Playstation Portable";
-            this.btnPsp.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
-            this.btnPsp.Click += new System.EventHandler(this.btnPsp_Click);
-            // 
-            // btnGba
-            // 
-            this.btnGba.ForeColor = System.Drawing.Color.White;
-            this.btnGba.Image = global::GameTrackr.Properties.Resources.gba_icon;
-            this.btnGba.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
-            this.btnGba.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.btnGba.Name = "btnGba";
-            this.btnGba.Size = new System.Drawing.Size(114, 51);
-            this.btnGba.Text = "Game Boy Advance";
-            this.btnGba.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
-            this.btnGba.Click += new System.EventHandler(this.btnGba_Click);
             // 
             // flContainer
             // 
@@ -117,8 +84,8 @@
             this.toolStrip1.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.toolStrip1.GripStyle = System.Windows.Forms.ToolStripGripStyle.Hidden;
             this.toolStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.btnAddManual,
-            this.btnAtualizar});
+            this.pbProgresso,
+            this.lblProcessando});
             this.toolStrip1.Location = new System.Drawing.Point(0, 413);
             this.toolStrip1.Name = "toolStrip1";
             this.toolStrip1.RenderMode = System.Windows.Forms.ToolStripRenderMode.System;
@@ -126,23 +93,86 @@
             this.toolStrip1.TabIndex = 2;
             this.toolStrip1.Text = "toolStrip1";
             // 
-            // btnAddManual
+            // btnConfig
             // 
-            this.btnAddManual.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.btnAddManual.Image = global::GameTrackr.Properties.Resources.controller_add;
-            this.btnAddManual.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.btnAddManual.Name = "btnAddManual";
-            this.btnAddManual.Size = new System.Drawing.Size(23, 22);
-            this.btnAddManual.Text = "Adicionar à biblioteca";
+            this.btnConfig.Alignment = System.Windows.Forms.ToolStripItemAlignment.Right;
+            this.btnConfig.ForeColor = System.Drawing.Color.White;
+            this.btnConfig.Image = global::GameTrackr.Properties.Resources.setting_tools;
+            this.btnConfig.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
+            this.btnConfig.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.btnConfig.Name = "btnConfig";
+            this.btnConfig.Size = new System.Drawing.Size(88, 51);
+            this.btnConfig.Text = "Configurações";
+            this.btnConfig.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
+            this.btnConfig.Click += new System.EventHandler(this.btnConfig_Click);
             // 
-            // btnAtualizar
+            // btnRefresh
             // 
-            this.btnAtualizar.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.btnAtualizar.Image = global::GameTrackr.Properties.Resources.arrow_refresh;
-            this.btnAtualizar.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.btnAtualizar.Name = "btnAtualizar";
-            this.btnAtualizar.Size = new System.Drawing.Size(23, 22);
-            this.btnAtualizar.Text = "Atualizar";
+            this.btnRefresh.Alignment = System.Windows.Forms.ToolStripItemAlignment.Right;
+            this.btnRefresh.ForeColor = System.Drawing.Color.White;
+            this.btnRefresh.Image = global::GameTrackr.Properties.Resources.arrow_refresh1;
+            this.btnRefresh.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
+            this.btnRefresh.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.btnRefresh.Name = "btnRefresh";
+            this.btnRefresh.Size = new System.Drawing.Size(57, 51);
+            this.btnRefresh.Text = "Atualizar";
+            this.btnRefresh.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
+            this.btnRefresh.Click += new System.EventHandler(this.btnAddBiblioteca_Click);
+            // 
+            // btnPsp
+            // 
+            this.btnPsp.Checked = true;
+            this.btnPsp.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.btnPsp.ForeColor = System.Drawing.Color.White;
+            this.btnPsp.Image = global::GameTrackr.Properties.Resources.sony_psp_icon;
+            this.btnPsp.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
+            this.btnPsp.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.btnPsp.Name = "btnPsp";
+            this.btnPsp.Size = new System.Drawing.Size(116, 51);
+            this.btnPsp.Tag = "Sony PSP";
+            this.btnPsp.Text = "Playstation Portable";
+            this.btnPsp.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
+            this.btnPsp.Click += new System.EventHandler(this.btnPsp_Click);
+            // 
+            // btnPSOne
+            // 
+            this.btnPSOne.ForeColor = System.Drawing.Color.White;
+            this.btnPSOne.Image = global::GameTrackr.Properties.Resources.sony_psone_icon;
+            this.btnPSOne.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
+            this.btnPSOne.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.btnPSOne.Name = "btnPSOne";
+            this.btnPSOne.Size = new System.Drawing.Size(94, 51);
+            this.btnPSOne.Tag = "Sony Playstation";
+            this.btnPSOne.Text = "Playstation One";
+            this.btnPSOne.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
+            this.btnPSOne.Click += new System.EventHandler(this.btnPSOne_Click);
+            // 
+            // btnGba
+            // 
+            this.btnGba.ForeColor = System.Drawing.Color.White;
+            this.btnGba.Image = global::GameTrackr.Properties.Resources.nintendo_game_boy_advance_icon;
+            this.btnGba.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
+            this.btnGba.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.btnGba.Name = "btnGba";
+            this.btnGba.Size = new System.Drawing.Size(114, 51);
+            this.btnGba.Tag = "Nintendo Game Boy Advance";
+            this.btnGba.Text = "Game Boy Advance";
+            this.btnGba.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
+            this.btnGba.Click += new System.EventHandler(this.btnGba_Click);
+            // 
+            // pbProgresso
+            // 
+            this.pbProgresso.Alignment = System.Windows.Forms.ToolStripItemAlignment.Right;
+            this.pbProgresso.Name = "pbProgresso";
+            this.pbProgresso.Size = new System.Drawing.Size(100, 22);
+            // 
+            // lblProcessando
+            // 
+            this.lblProcessando.Alignment = System.Windows.Forms.ToolStripItemAlignment.Right;
+            this.lblProcessando.BackColor = System.Drawing.Color.Transparent;
+            this.lblProcessando.Name = "lblProcessando";
+            this.lblProcessando.Size = new System.Drawing.Size(74, 22);
+            this.lblProcessando.Text = "Processando";
             // 
             // frmMenu
             // 
@@ -153,6 +183,7 @@
             this.Controls.Add(this.toolStrip1);
             this.Controls.Add(this.flContainer);
             this.Controls.Add(this.mnMenu);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "frmMenu";
             this.Text = "Game Trackr";
             this.mnMenu.ResumeLayout(false);
@@ -167,13 +198,16 @@
         #endregion
 
         private System.Windows.Forms.ToolStrip mnMenu;
-        private System.Windows.Forms.ToolStripButton btnAddBiblioteca;
+        private System.Windows.Forms.ToolStripButton btnRefresh;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator1;
         private System.Windows.Forms.FlowLayoutPanel flContainer;
         private System.Windows.Forms.ToolStripButton btnGba;
         private System.Windows.Forms.ToolStripButton btnPsp;
         private System.Windows.Forms.ToolStrip toolStrip1;
-        private System.Windows.Forms.ToolStripButton btnAddManual;
-        private System.Windows.Forms.ToolStripButton btnAtualizar;
+        private System.Windows.Forms.ToolStripButton btnConfig;
+        private System.Windows.Forms.ToolStripButton btnPSOne;
+        private System.Windows.Forms.ToolStripProgressBar pbProgresso;
+        private System.Windows.Forms.ToolStripLabel lblProcessando;
+        private System.ComponentModel.BackgroundWorker bgWorker;
     }
 }

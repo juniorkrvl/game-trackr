@@ -1,12 +1,14 @@
 ﻿using GameTrackr.Core;
 using System;
 using System.Collections.Generic;
+using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
 namespace GameTrackr.Model
 {
+    [Serializable]
     class Game
     {
 
@@ -25,6 +27,8 @@ namespace GameTrackr.Model
         public string overview { get; set; }
         public string coop { get; set; }
         public string esrb { get; set; }
+        public Image cover { get; set; }
+        public string path { get; set; }
 
         public List<GameImage> images { get; set; }
 
@@ -70,6 +74,7 @@ namespace GameTrackr.Model
 
     }
 
+    [Serializable]
     class GameImage
     {
         public string original { get; set; }

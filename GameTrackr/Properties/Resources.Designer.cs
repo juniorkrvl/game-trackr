@@ -73,6 +73,16 @@ namespace GameTrackr.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap arrow_refresh1 {
+            get {
+                object obj = ResourceManager.GetObject("arrow_refresh1", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap book_add {
             get {
                 object obj = ResourceManager.GetObject("book_add", resourceCulture);
@@ -103,9 +113,39 @@ namespace GameTrackr.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap nintendo_game_boy_advance_icon {
+            get {
+                object obj = ResourceManager.GetObject("nintendo-game-boy-advance-icon", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap psp_icon {
             get {
                 object obj = ResourceManager.GetObject("psp_icon", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap setting_tools {
+            get {
+                object obj = ResourceManager.GetObject("setting_tools", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap sony_psone_icon {
+            get {
+                object obj = ResourceManager.GetObject("sony-psone-icon", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

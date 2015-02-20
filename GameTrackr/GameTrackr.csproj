@@ -31,8 +31,13 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
+  <PropertyGroup>
+    <ApplicationIcon>
+    </ApplicationIcon>
+  </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
+    <Reference Include="System.Configuration" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
@@ -44,11 +49,20 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Core\Config.cs" />
     <Compile Include="Core\Service.cs" />
     <Compile Include="Core\Wrapper.cs" />
     <Compile Include="Model\Game.cs" />
+    <Compile Include="Model\Platform.cs" />
+    <Compile Include="Model\System.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="View\frmConfig.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="View\frmConfig.Designer.cs">
+      <DependentUpon>frmConfig.cs</DependentUpon>
+    </Compile>
     <Compile Include="View\frmMenu.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -71,6 +85,9 @@
       <DependentUpon>Resources.resx</DependentUpon>
       <DesignTime>True</DesignTime>
     </Compile>
+    <EmbeddedResource Include="View\frmConfig.resx">
+      <DependentUpon>frmConfig.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="View\frmMenu.resx">
       <DependentUpon>frmMenu.cs</DependentUpon>
     </EmbeddedResource>
@@ -107,6 +124,21 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\controller_add.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\arrow_refresh1.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\setting_tools.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\nintendo-game-boy-advance-icon.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\sony-psone-icon.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="neio.ico" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

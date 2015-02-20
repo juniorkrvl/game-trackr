@@ -46,5 +46,17 @@ namespace GameTrackr.Properties {
                 this["gba"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("")]
+        public string psone {
+            get {
+                return ((string)(this["psone"]));
+            }
+            set {
+                this["psone"] = value;
+            }
+        }
     }
 }
