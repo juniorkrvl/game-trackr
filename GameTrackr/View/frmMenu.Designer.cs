@@ -72,11 +72,13 @@
             // 
             // flContainer
             // 
+            this.flContainer.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.flContainer.AutoScroll = true;
-            this.flContainer.Dock = System.Windows.Forms.DockStyle.Fill;
             this.flContainer.Location = new System.Drawing.Point(0, 54);
             this.flContainer.Name = "flContainer";
-            this.flContainer.Size = new System.Drawing.Size(704, 384);
+            this.flContainer.Size = new System.Drawing.Size(704, 359);
             this.flContainer.TabIndex = 1;
             // 
             // toolStrip1
