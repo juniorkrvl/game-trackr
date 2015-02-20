@@ -48,7 +48,9 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Core\Config.cs" />
+    <Compile Include="Core\Config.cs">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Include="Core\Service.cs" />
     <Compile Include="Core\Wrapper.cs" />
     <Compile Include="Model\Game.cs" />
