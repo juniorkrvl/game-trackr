@@ -40,6 +40,13 @@ namespace GameTrackr.Core
                     gm.id = int.Parse(game.Element("id").Value);
                     gm.name = game.Element("GameTitle").Value;
                     gm.overview = game.Element("Overview") == null ? "" : game.Element("Overview").Value;
+                    gm.coop = game.Element("Co-op") == null ? "" : game.Element("Co-op").Value;
+                    gm.publisher = game.Element("Publisher") == null ? "" : game.Element("Publisher").Value;
+                    gm.developer = game.Element("Developer") == null ? "" : game.Element("Developer").Value;
+                    gm.esrb = game.Element("ESRB") == null ? "" : game.Element("ESRB").Value;
+                    gm.platform = game.Element("Platform") == null ? "" : game.Element("Platform").Value;
+                    gm.platformId = game.Element("PlatformId") == null ? 0 : int.Parse(game.Element("PlatformId").Value);
+
 
                     foreach (XElement image in game.Element("Images").Elements())
                     {

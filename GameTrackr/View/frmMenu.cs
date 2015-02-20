@@ -17,6 +17,9 @@ namespace GameTrackr.View
 {
     public partial class frmMenu : Form
     {
+
+        public PictureBox selected = null;
+
         public frmMenu()
         {
             InitializeComponent();
@@ -159,11 +162,67 @@ namespace GameTrackr.View
                         pic.Height = plat.boxHeight;
                         pic.SizeMode = PictureBoxSizeMode.StretchImage;
                         pic.Image = game.cover;
+                        pic.Tag = game.id;
+                        pic.MouseEnter += pic_MouseEnter;
+
                         flContainer.Controls.Add(pic);
+
                     }
                 }
             }
+
         }
+
+        void pic_MouseEnter(object sender, EventArgs e)
+        {
+            if (selected != null && selected.Controls.Count > 0)
+            {
+                selected.Controls.Remove(selected.Controls[0]);
+                Application.DoEvents();
+            }
+
+            selected = (PictureBox)sender;
+
+            PictureBox pic = (PictureBox)sender;
+            pic.BackgroundImage = GameTrackr.Properties.Resources.shadow_60;
+
+            PictureBox edit = new PictureBox();
+            edit.SizeMode = PictureBoxSizeMode.AutoSize;
+            edit.Image = GameTrackr.Properties.Resources.edit_quadrado;
+
+            PictureBox pic2 = new PictureBox();
+            pic2.Tag = pic.Tag;
+            pic2.Size = pic.Size;
+            pic2.BackgroundImage = GameTrackr.Properties.Resources.shadow_60;
+            pic2.BackColor = Color.Transparent;
+            pic2.Cursor = Cursors.Hand;
+            toolTip.SetToolTip(pic2, "Editar Jogo");
+            toolTip.SetToolTip(edit, "Editar Jogo");
+
+            edit.Top = (pic2.Height / 2) - (edit.Height / 2);
+            edit.Left = (pic2.Width / 2) - (edit.Width / 2);
+
+            pic2.Controls.Add(edit);
+
+            pic.Controls.Add(pic2);
+
+            pic2.MouseLeave += pic2_MouseLeave;
+            pic2.Click += pic2_Click;
+        }
+
+        void pic2_Click(object sender, EventArgs e)
+        {
+            frmEditar frm = new frmEditar((int)(sender as PictureBox).Tag);
+            frm.Show();
+        }
+
+        void pic2_MouseLeave(object sender, EventArgs e)
+        {
+            PictureBox pic = sender as PictureBox;
+            PictureBox parent = pic.Parent as PictureBox;
+            parent.Controls.Remove(pic);
+        }
+
 
         private void btnPsp_Click(object sender, EventArgs e)
         {
@@ -171,6 +230,11 @@ namespace GameTrackr.View
             btnGba.Checked = false;
             btnPSOne.Checked = false;
             LoadCapas();
+
+            if (btnPsp.Checked && flContainer.Controls.Count == 0)
+            {
+                bgWorker.RunWorkerAsync();
+            }
         }
 
         private void btnGba_Click(object sender, EventArgs e)
@@ -179,6 +243,11 @@ namespace GameTrackr.View
             btnPsp.Checked = false;
             btnPSOne.Checked = false;
             LoadCapas();
+
+            if (btnGba.Checked && flContainer.Controls.Count == 0)
+            {
+                bgWorker.RunWorkerAsync();
+            }
         }
 
         private void btnConfig_Click(object sender, EventArgs e)
@@ -193,6 +262,11 @@ namespace GameTrackr.View
             btnPsp.Checked = false;
             btnGba.Checked = false;
             LoadCapas();
+
+            if (btnPSOne.Checked && flContainer.Controls.Count == 0)
+            {
+                bgWorker.RunWorkerAsync();
+            }
         }
 
     }

@@ -38,6 +38,7 @@
     <Reference Include="System" />
     <Reference Include="System.Configuration" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Web.Extensions" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -64,6 +65,12 @@
     <Compile Include="View\frmConfig.Designer.cs">
       <DependentUpon>frmConfig.cs</DependentUpon>
     </Compile>
+    <Compile Include="View\frmEditar.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="View\frmEditar.Designer.cs">
+      <DependentUpon>frmEditar.cs</DependentUpon>
+    </Compile>
     <Compile Include="View\frmMenu.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -88,6 +95,9 @@
     </Compile>
     <EmbeddedResource Include="View\frmConfig.resx">
       <DependentUpon>frmConfig.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="View\frmEditar.resx">
+      <DependentUpon>frmEditar.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="View\frmMenu.resx">
       <DependentUpon>frmMenu.cs</DependentUpon>
@@ -140,6 +150,13 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="neio.ico" />
+    <None Include="Resources\door_in.png" />
+    <None Include="Resources\disk.png" />
+    <None Include="Resources\edit_quadrado.png" />
+    <None Include="Resources\edit.png" />
+    <None Include="Resources\shadow_60.png" />
+    <None Include="Resources\shadow1.png" />
+    <None Include="Resources\shadow.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

@@ -22,5 +22,18 @@ namespace GameTrackr.Model
             return platforms.Where(x => x.type == type).FirstOrDefault();
         }
 
+        public Game GetGame(int id)
+        {
+            Game gm = new Game();
+            foreach (Platform plat in platforms)
+            {
+                gm = plat.games.Where(x => x.id == id).FirstOrDefault();
+                if (gm != null)
+                    return gm;
+            }
+
+            return null;
+        }
+
     }
 }

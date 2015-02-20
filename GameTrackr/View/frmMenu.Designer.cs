@@ -28,19 +28,21 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmMenu));
             this.mnMenu = new System.Windows.Forms.ToolStrip();
-            this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
-            this.flContainer = new System.Windows.Forms.FlowLayoutPanel();
-            this.toolStrip1 = new System.Windows.Forms.ToolStrip();
             this.btnConfig = new System.Windows.Forms.ToolStripButton();
             this.btnRefresh = new System.Windows.Forms.ToolStripButton();
+            this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
             this.btnPsp = new System.Windows.Forms.ToolStripButton();
             this.btnPSOne = new System.Windows.Forms.ToolStripButton();
             this.btnGba = new System.Windows.Forms.ToolStripButton();
+            this.flContainer = new System.Windows.Forms.FlowLayoutPanel();
+            this.toolStrip1 = new System.Windows.Forms.ToolStrip();
             this.pbProgresso = new System.Windows.Forms.ToolStripProgressBar();
             this.lblProcessando = new System.Windows.Forms.ToolStripLabel();
             this.bgWorker = new System.ComponentModel.BackgroundWorker();
+            this.toolTip = new System.Windows.Forms.ToolTip(this.components);
             this.mnMenu.SuspendLayout();
             this.toolStrip1.SuspendLayout();
             this.SuspendLayout();
@@ -62,38 +64,6 @@
             this.mnMenu.Size = new System.Drawing.Size(704, 54);
             this.mnMenu.TabIndex = 0;
             this.mnMenu.Text = "toolStrip1";
-            // 
-            // toolStripSeparator1
-            // 
-            this.toolStripSeparator1.Alignment = System.Windows.Forms.ToolStripItemAlignment.Right;
-            this.toolStripSeparator1.ForeColor = System.Drawing.Color.White;
-            this.toolStripSeparator1.Name = "toolStripSeparator1";
-            this.toolStripSeparator1.Size = new System.Drawing.Size(6, 54);
-            // 
-            // flContainer
-            // 
-            this.flContainer.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.flContainer.AutoScroll = true;
-            this.flContainer.Location = new System.Drawing.Point(0, 54);
-            this.flContainer.Name = "flContainer";
-            this.flContainer.Size = new System.Drawing.Size(704, 359);
-            this.flContainer.TabIndex = 1;
-            // 
-            // toolStrip1
-            // 
-            this.toolStrip1.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.toolStrip1.GripStyle = System.Windows.Forms.ToolStripGripStyle.Hidden;
-            this.toolStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.pbProgresso,
-            this.lblProcessando});
-            this.toolStrip1.Location = new System.Drawing.Point(0, 413);
-            this.toolStrip1.Name = "toolStrip1";
-            this.toolStrip1.RenderMode = System.Windows.Forms.ToolStripRenderMode.System;
-            this.toolStrip1.Size = new System.Drawing.Size(704, 25);
-            this.toolStrip1.TabIndex = 2;
-            this.toolStrip1.Text = "toolStrip1";
             // 
             // btnConfig
             // 
@@ -120,6 +90,13 @@
             this.btnRefresh.Text = "Atualizar";
             this.btnRefresh.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
             this.btnRefresh.Click += new System.EventHandler(this.btnAddBiblioteca_Click);
+            // 
+            // toolStripSeparator1
+            // 
+            this.toolStripSeparator1.Alignment = System.Windows.Forms.ToolStripItemAlignment.Right;
+            this.toolStripSeparator1.ForeColor = System.Drawing.Color.White;
+            this.toolStripSeparator1.Name = "toolStripSeparator1";
+            this.toolStripSeparator1.Size = new System.Drawing.Size(6, 54);
             // 
             // btnPsp
             // 
@@ -161,6 +138,31 @@
             this.btnGba.Text = "Game Boy Advance";
             this.btnGba.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
             this.btnGba.Click += new System.EventHandler(this.btnGba_Click);
+            // 
+            // flContainer
+            // 
+            this.flContainer.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.flContainer.AutoScroll = true;
+            this.flContainer.Location = new System.Drawing.Point(0, 54);
+            this.flContainer.Name = "flContainer";
+            this.flContainer.Size = new System.Drawing.Size(704, 359);
+            this.flContainer.TabIndex = 1;
+            // 
+            // toolStrip1
+            // 
+            this.toolStrip1.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.toolStrip1.GripStyle = System.Windows.Forms.ToolStripGripStyle.Hidden;
+            this.toolStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.pbProgresso,
+            this.lblProcessando});
+            this.toolStrip1.Location = new System.Drawing.Point(0, 413);
+            this.toolStrip1.Name = "toolStrip1";
+            this.toolStrip1.RenderMode = System.Windows.Forms.ToolStripRenderMode.System;
+            this.toolStrip1.Size = new System.Drawing.Size(704, 25);
+            this.toolStrip1.TabIndex = 2;
+            this.toolStrip1.Text = "toolStrip1";
             // 
             // pbProgresso
             // 
@@ -211,5 +213,6 @@
         private System.Windows.Forms.ToolStripProgressBar pbProgresso;
         private System.Windows.Forms.ToolStripLabel lblProcessando;
         private System.ComponentModel.BackgroundWorker bgWorker;
+        private System.Windows.Forms.ToolTip toolTip;
     }
 }
