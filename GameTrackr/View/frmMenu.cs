@@ -94,7 +94,9 @@ namespace GameTrackr.View
 
                     foreach (FileInfo a in fileNames)
                     {
-                        lblProcessando.Text = "Searching metadata: " + a.Name.Replace(a.Extension, "");
+                        //lblProcessando.Text = "Searching metadata: " + a.Name.Replace(a.Extension, "");
+                        mudaProcessando_ muda = new mudaProcessando_(this.mudaProcessando);
+                        muda("Searching metadata: " + a.Name.Replace(a.Extension, ""));
 
                         Game gm = p.games.Where(x => x.path == a.FullName).FirstOrDefault();
 
@@ -105,25 +107,28 @@ namespace GameTrackr.View
                             if (gm == null)
                                 gm = Wrapper.GetGame(0, Regex.Replace(a.Name.Replace(a.Extension, ""), @"[\d-]", string.Empty), p.name);
 
-                            GameImage gi = gm.GetFrontBox();
-                            if (gi != null)
+                            if (gm!= null)
                             {
-                                PictureBox pic = new PictureBox();
-                                pic.Load(gi.original);
-                                gm.cover = pic.Image;
-                                gm.path = a.FullName;
-
-                                if (p.name.Equals(button.Tag))
+                                GameImage gi = gm.GetFrontBox();
+                                if (gi != null)
                                 {
-                                    pic = new PictureBox();
-                                    pic.Image = gm.cover;
-                                    pic.SizeMode = PictureBoxSizeMode.StretchImage;
-                                }
+                                    PictureBox pic = new PictureBox();
+                                    pic.Load(gi.original);
+                                    gm.cover = pic.Image;
+                                    gm.path = a.FullName;
 
-                            }
+                                    if (p.name.Equals(button.Tag))
+                                    {
+                                        pic = new PictureBox();
+                                        pic.Image = gm.cover;
+                                        pic.SizeMode = PictureBoxSizeMode.StretchImage;
+                                    }
 
-                            if (gm != null)
+                                }    
+
                                 p.games.Add(gm);
+                            }
+                               
                         }
 
                         if (pbProgresso.Value < pbProgresso.Maximum)
@@ -136,6 +141,21 @@ namespace GameTrackr.View
             }
 
             Configuration.SaveConfig();
+        }
+
+        public delegate void mudaProcessando_(string text);
+
+        public void mudaProcessando(string text) {
+            if (this.InvokeRequired)
+            {
+                mudaProcessando_ d = new mudaProcessando_(mudaProcessando);
+                this.Invoke(d, text);
+            }
+            else
+            {
+                this.lblProcessando.Text = text;
+            }
+            
         }
 
         public void LoadCapas()
